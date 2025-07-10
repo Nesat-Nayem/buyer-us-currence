@@ -974,42 +974,27 @@
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .header-content {
-                flex-direction: row;
-                justify-content: space-between;
+                justify-content: center;
                 align-items: center;
-                gap: 10px;
             }
             
             .header-left {
-                flex: 1;
-                gap: 5px;
-            }
-            
-            .header-text {
-                font-size: 14px;
-                line-height: 16px;
-            }
-            
-            .submit-link {
                 display: none;
             }
             
             .header-center {
-                flex: 0 0 auto;
-                margin: 0 10px;
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .header-right {
+                display: none;
             }
             
             .logo-img {
                 height: 40px;
-            }
-            
-            .header-right {
-                flex: 0 0 auto;
-            }
-            
-            .free-offer-btn {
-                padding: 8px 12px;
-                font-size: 13px;
             }
             
             .hero-contact-wrapper {
@@ -1190,19 +1175,9 @@
         }
         
         @media (max-width: 480px) {
-            .header-text {
-                font-size: 12px;
-                line-height: 14px;
-            }
-            
             .logo-img {
                 height: 35px;
-                    margin-right: 0px;
-            }
-            
-            .free-offer-btn {
-                padding: 6px 10px;
-                font-size: 12px;
+                margin-right: 0px;
             }
             
             .hero-title {
