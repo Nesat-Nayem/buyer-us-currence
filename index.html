@@ -15,7 +15,7 @@
             <span class="header-text"
               >Have Rare Notes or Fancy Serial Numbers?</span
             >
-            <a href="#" class="submit-link">Submit Here</a>
+            <a href="#contact-form" class="submit-link">Submit Here</a>
           </div>
           <div class="header-center">
              <img
@@ -26,7 +26,7 @@
           </div>
           <div class="header-right">
        
-            <button class="free-offer-btn">Free Cash Offer</button>
+            <button class="free-offer-btn" onclick="scrollToContactForm()">Free Cash Offer</button>
           </div>
         </div>
       </header>
@@ -48,7 +48,7 @@
               From fancy serial numbers to full packs — get a free cash offer in
               just 24 hours.
             </p>
-            <button class="submit-offer-btn">Submit Offer</button>
+            <button class="submit-offer-btn" onclick="scrollToContactForm()">Submit Offer</button>
           </div>
         </section>
 
@@ -348,13 +348,13 @@
              
               </div>
             </div>
-            <button class="get-offer-btn">Get a Free Cash Offer</button>
+            <button class="get-offer-btn" onclick="scrollToContactForm()">Get a Free Cash Offer</button>
           </div>
         </div>
       </section>
 
       <!-- Contact Form Section -->
-      <section class="contact-form-section">
+      <section id="contact-form" class="contact-form-section">
         <div class="form-container">
           <div class="form-badge">Request a Offer</div>
           <h2 class="form-title">Request a Free Cash Offer</h2>
@@ -487,6 +487,12 @@
     </div>
 
     <script>
+      function scrollToContactForm() {
+        document.getElementById('contact-form').scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+
       function toggleFaq(element) {
         const allFaqItems = document.querySelectorAll(".faq-item");
         allFaqItems.forEach((item) => {
