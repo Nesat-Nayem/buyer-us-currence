@@ -547,7 +547,7 @@
         .expert-image-container {
             position: relative;
             width: 400px;
-            height: 400px;
+            height: 380px;
             flex-shrink: 0;
         }
         
@@ -555,8 +555,8 @@
             position: absolute;
             top: 15px;
             left: 15px;
-            width: 370px;
-            height: 370px;
+            width: 350px;
+            height: 350px;
             background-color: #ffffff;
             border-radius: 20px;
             border: 3px solid #4a9eff;
@@ -567,13 +567,14 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 400px;
-            height: 400px;
+            width: 380px;
+            height: 380px;
             object-fit: cover;
-            object-position: center top;
+            object-position: center 15%;
             border-radius: 20px;
             border: 3px solid #e0e0e0;
             background-color: #f9f9f9;
+            transform: scale(1.05);
         }
         
         .expert-description {
@@ -1107,16 +1108,16 @@
             }
             
             .expert-image-container {
-                width: 300px;
+                width: 350px;
                 height: 300px;
                 margin: 0 auto 30px auto;
                 align-self: center;
             }
             
             .expert-bg {
-                width: 270px;
-                height: 270px;
-                top: 15px;
+                width: 280px;
+                height: 280px;
+                top: 10px;
                 left: 15px;
             }
             
@@ -1125,7 +1126,8 @@
                 height: 300px;
                 left: 0;
                 top: 0;
-                object-position: center top;
+                object-position: center 15%;
+                transform: scale(1.05);
             }
             
             .expert-description {
@@ -1247,23 +1249,24 @@
             }
             
             .expert-image-container {
-                width: 250px;
-                height: 250px;
+                width: 280px;
+                height: 240px;
             }
             
             .expert-bg {
                 width: 220px;
                 height: 220px;
-                top: 15px;
+                top: 10px;
                 left: 15px;
             }
             
             .expert-image {
-                width: 250px;
-                height: 250px;
+                width: 240px;
+                height: 240px;
                 left: 0;
                 top: 0;
-                object-position: center top;
+                object-position: center 15%;
+                transform: scale(1.05);
             }
             
             .expert-title {
