@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Buyer US Currency - We Buy Rare Notes & Collections</title>
     <link rel="stylesheet" href="./style.css" />
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   </head>
   <body>
     <div class="container">
@@ -358,28 +360,19 @@
         <div class="form-container">
           <div class="form-badge">Request a Offer</div>
           <h2 class="form-title">Request a Free Cash Offer</h2>
-          <form class="form-grid" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
-            <!-- Web3Forms Configuration -->
-            <input type="hidden" name="access_key" value="7f5267f8-e0bc-4e91-a076-97dea9da9f2b">
-            <input type="hidden" name="subject" value="New Cash Offer Request - Buyer US Currency">
-            <input type="hidden" name="from_name" value="Buyer US Currency Website">
-            <input type="hidden" name="redirect" value="https://web3forms.com/success">
-            
-            <!-- Honeypot Spam Protection -->
-            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-            
+          <form id="contact-form-element" class="form-grid">
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label"
                   >Full Name<span class="required">*</span></label
                 >
-                <input type="text" name="name" class="form-input" required />
+                <input type="text" name="from_name" class="form-input" required />
               </div>
               <div class="form-group">
                 <label class="form-label"
                   >Email Address<span class="required">*</span></label
                 >
-                <input type="email" name="email" class="form-input" required />
+                <input type="email" name="reply_to" class="form-input" required />
               </div>
             </div>
             <div class="form-row">
@@ -391,7 +384,7 @@
               </div>
               <div class="form-group">
                 <label class="form-label">Message</label>
-                <input type="text" name="message" class="form-input" />
+                <textarea name="message" class="form-input" rows="3"></textarea>
               </div>
             </div>
             <div class="form-row">
@@ -487,6 +480,13 @@
     </div>
 
     <script>
+      // Initialize EmailJS
+      (function() {
+        emailjs.init({
+          publicKey: "u3HQAhXY6dzcZlakS", // Replace with your EmailJS public key
+        });
+      })();
+
       function scrollToContactForm() {
         document.getElementById('contact-form').scrollIntoView({
           behavior: 'smooth'
@@ -503,12 +503,14 @@
         element.classList.toggle("active");
       }
 
-      // Form validation and submission
-      document.querySelector("form").addEventListener("submit", function (e) {
-        // Remove preventDefault to allow Web3Forms to handle submission
-        const requiredFields = this.querySelectorAll("input[required]");
+      // Form validation and submission with EmailJS
+      document.getElementById("contact-form-element").addEventListener("submit", function (e) {
+        e.preventDefault();
+        
+        const requiredFields = this.querySelectorAll("input[required], textarea[required]");
         let isValid = true;
 
+        // Validate required fields
         requiredFields.forEach((field) => {
           if (!field.value.trim()) {
             field.style.borderColor = "#ff0000";
@@ -519,7 +521,6 @@
         });
 
         if (!isValid) {
-          e.preventDefault();
           alert("Please fill in all required fields.");
           return false;
         }
@@ -527,14 +528,41 @@
         // Show loading state
         const submitBtn = this.querySelector('.submit-btn');
         const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Submitting...';
+        submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
 
-        // Re-enable button after a delay in case of errors
-        setTimeout(() => {
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-        }, 5000);
+        // Prepare form data
+        const formData = new FormData(this);
+        const templateParams = {
+          from_name: formData.get('from_name'),
+          reply_to: formData.get('reply_to'),
+          phone: formData.get('phone'),
+          message: formData.get('message') || 'No message provided',
+          front_photos: 'Files uploaded (check attachments)',
+          back_photos: 'Files uploaded (check attachments)'
+        };
+
+        // Send email using EmailJS
+        emailjs.send('service_2e3wetk', 'template_157s31h', templateParams)
+          .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            alert('Thank you! Your request has been sent successfully. We will contact you within 24 hours.');
+            document.getElementById("contact-form-element").reset();
+            
+            // Reset file upload labels
+            document.querySelectorAll('.file-upload span').forEach(span => {
+              span.textContent = 'Upload Photos JPG/PNG';
+            });
+          })
+          .catch(function(error) {
+            console.log('FAILED...', error);
+            alert('Sorry, there was an error sending your request. Please try again or contact us directly.');
+          })
+          .finally(function() {
+            // Restore button
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          });
       });
 
       // File upload handling
@@ -551,8 +579,6 @@
             }
           });
         });
-
-
     </script>
   </body>
 </html>
