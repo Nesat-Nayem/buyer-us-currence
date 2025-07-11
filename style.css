@@ -539,44 +539,50 @@
         
         .expert-info {
             display: flex;
-            gap: 30px;
+            gap: 40px;
             align-items: center;
+            justify-content: center;
         }
         
         .expert-image-container {
             position: relative;
-            width: 452px;
-            height: 392px;
+            width: 400px;
+            height: 400px;
+            flex-shrink: 0;
         }
         
         .expert-bg {
             position: absolute;
-            top: 13px;
-            left: 0;
-            width: 452px;
-            height: 378px;
+            top: 15px;
+            left: 15px;
+            width: 370px;
+            height: 370px;
             background-color: #ffffff;
             border-radius: 20px;
             border: 3px solid #4a9eff;
+            box-shadow: 0 10px 30px rgba(74, 158, 255, 0.15);
         }
         
         .expert-image {
             position: absolute;
             top: 0;
-            left: 31px;
-            width: 392px;
-            height: 392px;
+            left: 0;
+            width: 400px;
+            height: 400px;
             object-fit: cover;
-            border-radius: 17px;
+            object-position: center top;
+            border-radius: 20px;
+            border: 3px solid #e0e0e0;
+            background-color: #f9f9f9;
         }
         
         .expert-description {
             font-size: 16px;
             font-weight: 500;
-            line-height: 25px;
-            color: #666666;
-            margin-left: 30px;
+            line-height: 26px;
+            color: #555555;
             flex: 1;
+            max-width: 600px;
         }
         
         /* FAQ Section */
@@ -1101,32 +1107,33 @@
             }
             
             .expert-image-container {
-                width: 100%;
-                max-width: 400px;
-                height: 320px;
-                margin: 0 auto;
+                width: 300px;
+                height: 300px;
+                margin: 0 auto 30px auto;
                 align-self: center;
             }
             
             .expert-bg {
-                width: 100%;
-                height: 307px;
-                top: 13px;
-                left: 0;
+                width: 270px;
+                height: 270px;
+                top: 15px;
+                left: 15px;
             }
             
             .expert-image {
-                width: calc(100% - 62px);
-                height: 320px;
-                left: 31px;
+                width: 300px;
+                height: 300px;
+                left: 0;
                 top: 0;
-                object-fit: cover;
+                object-position: center top;
             }
             
             .expert-description {
-                margin-left: 0;
-                text-align: left;
+                text-align: center;
                 margin-top: 20px;
+                font-size: 15px;
+                line-height: 24px;
+                padding: 0 20px;
             }
             
             .faq-section {
@@ -1240,16 +1247,23 @@
             }
             
             .expert-image-container {
-                max-width: 280px;
+                width: 250px;
                 height: 250px;
             }
             
             .expert-bg {
-                height: 237px;
+                width: 220px;
+                height: 220px;
+                top: 15px;
+                left: 15px;
             }
             
             .expert-image {
+                width: 250px;
                 height: 250px;
+                left: 0;
+                top: 0;
+                object-position: center top;
             }
             
             .expert-title {
